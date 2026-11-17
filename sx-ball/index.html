@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10101c">
+  <meta name="description" content="SX Ball is a brick-breaking arcade game with twelve original levels and a level editor.">
+  <title>SX Ball | Brick-breaking arcade</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./views.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#play" aria-label="SX Ball">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>SX<span class="brand-ball">BALL</span></span>
+      </a>
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="#play" data-nav="play"></a>
+        <a href="#levels" data-nav="levels"></a>
+        <a href="#editor" data-nav="editor"></a>
+        <a href="#scores" data-nav="scores"></a>
+      </nav>
+      <div class="header-tools">
+        <button class="icon-button" id="sound" type="button"></button>
+        <label class="language-control" id="language-control">
+          <span aria-hidden="true" id="globe"></span>
+          <select id="language" aria-label="Language">
+            <option value="auto">Auto</option>
+            <option value="en">English</option>
+            <option value="pl">Polski</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+  <main class="shell" id="main">
+    <section id="play" class="view">
+      <div class="page-heading">
+        <div><h1 id="play-title"></h1><p id="play-description"></p></div>
+        <div class="heading-actions play-heading-actions">
+          <button type="button" class="button button-primary" data-action="start-campaign" id="campaign-button" hidden></button>
+          <button type="button" class="button button-secondary" data-action="guide" id="guide-button"></button>
+        </div>
+      </div>
+      <div class="play-layout">
+        <section class="panel game-panel" aria-labelledby="field-label">
+          <div class="field-toolbar">
+            <div class="field-left"><span id="field-label" class="eyebrow"></span><span class="field-divider"></span><span id="field-mode"></span></div>
+            <div class="field-right">
+              <span id="phase-tag" class="phase-tag"><span></span><span id="phase-text"></span></span>
+              <button class="icon-button field-button" id="pause-button" data-action="pause" type="button" disabled></button>
+              <button class="icon-button field-button" id="restart-button" data-action="restart" type="button" disabled></button>
+            </div>
+          </div>
+          <div class="board" id="board">
+            <canvas id="game-canvas" width="860" height="600" tabindex="0"></canvas>
+            <div id="board-overlay" class="board-overlay"></div>
+          </div>
+        </section>
+        <aside class="play-sidebar" id="play-sidebar">
+          <section class="panel stats-panel">
+            <h2 class="panel-heading" id="stats-heading"></h2>
+            <div class="stats-numbers">
+              <div><span id="score-label"></span><strong id="current-score">0</strong></div>
+              <div><span id="best-label"></span><strong id="best-score">0</strong></div>
+            </div>
+            <div class="life-row"><span id="lives-label"></span><div id="hearts" role="img"></div></div>
+          </section>
+          <section class="panel level-panel">
+            <div class="level-top"><h2 class="panel-heading" id="current-level-label"></h2><span id="level-number"></span></div>
+            <div class="level-details">
+              <canvas id="level-preview" width="140" height="88" aria-hidden="true"></canvas>
+              <div><strong id="level-name"></strong><span id="level-subtitle"></span></div>
+            </div>
+            <div class="level-progress" id="level-progress" aria-hidden="true"></div>
+          </section>
+          <section class="panel controls-panel">
+            <h2 class="panel-heading" id="controls-heading"></h2>
+            <div id="controls-list"></div>
+          </section>
+        </aside>
+      </div>
+    </section>
+    <section id="levels" class="view" hidden></section>
+    <section id="editor" class="view" hidden></section>
+    <section id="scores" class="view" hidden></section>
+  </main>
+  <dialog id="guide"></dialog>
+  <div class="power-toast" id="power-toast" role="status" hidden></div>
+  <div id="announcement" class="sr-only" role="status"></div>
+</body>
+</html>
